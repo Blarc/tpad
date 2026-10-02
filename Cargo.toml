@@ -1,0 +1,31 @@
+[package]
+name = "tpad"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.98"
+description = "A minimal self-hosted plain-text web notepad"
+license = "MIT"
+
+[dependencies]
+axum = "0.8.9"
+base64 = "0.22.1"
+bytes = "1.10.1"
+cap-std = "4.0.3"
+http = "1.3.1"
+rustix = { version = "1.1.5", features = ["fs"] }
+serde = { version = "1.0.228", features = ["derive"] }
+sha2 = "0.10.9"
+subtle = "2.6.1"
+tokio = { version = "1.48.0", features = ["macros", "net", "rt-multi-thread", "signal"] }
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
+
+[dev-dependencies]
+tempfile = "3.23.0"
+tower = { version = "0.5.2", features = ["util"] }
+
+[profile.release]
+strip = true
+lto = "thin"
+codegen-units = 1
+

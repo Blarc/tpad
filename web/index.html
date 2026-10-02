@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>tpad</title>
+    <link rel="icon" type="image/png" href="./assets/icon64.png">
+    <link rel="stylesheet" href="./app.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside id="sidebar" class="sidebar" aria-label="File browser">
+        <header class="sidebar-header">
+          <button id="close-sidebar" class="mobile-only quiet" type="button">Close</button>
+        </header>
+        <p id="browser-error" class="browser-error" role="status" hidden></p>
+        <div id="entry-list" class="entry-list" role="list" aria-label="Files and folders">
+          <div id="root-row" class="entry-row" role="listitem">
+            <button id="root-actions" class="entry-main root-entry" type="button" data-kind="root" data-path="" aria-label="Root directory /, expanded" aria-expanded="true" aria-selected="false" aria-haspopup="menu">
+              <span id="root-marker" class="tree-marker folder-toggle" aria-hidden="true"></span>
+              <span class="entry-label">/</span>
+            </button>
+          </div>
+          <div id="tree-entries"></div>
+        </div>
+      </aside>
+
+      <div id="sidebar-resizer" class="sidebar-resizer" role="separator" aria-label="Resize file navigation" aria-controls="sidebar" aria-orientation="vertical" aria-valuemin="150" aria-valuemax="480" aria-valuenow="240" tabindex="0"></div>
+
+      <main class="editor-pane">
+        <header class="editor-header">
+          <button id="open-sidebar" class="mobile-only" type="button" aria-controls="sidebar" aria-expanded="false">Files</button>
+          <span id="current-filename" class="current-filename">No file open</span>
+          <button id="find-tree" class="find-tree" type="button">Find</button>
+          <span id="save-status" class="save-status" role="status"></span>
+        </header>
+        <textarea id="editor" aria-label="Plain-text editor" autocomplete="off" autocapitalize="off" spellcheck="false" disabled></textarea>
+      </main>
+    </div>
+
+    <div id="entry-menu" class="entry-menu" role="menu" aria-label="Item actions" hidden>
+      <button id="new-file-in-folder" role="menuitem" type="button" hidden>New file here</button>
+      <button id="new-folder-in-folder" role="menuitem" type="button" hidden>New folder here</button>
+      <button id="rename-entry" role="menuitem" type="button">Rename</button>
+      <button id="delete-entry" role="menuitem" type="button">Delete</button>
+    </div>
+
+    <dialog id="action-dialog" class="action-dialog" aria-labelledby="action-title" aria-describedby="action-location action-message">
+      <form id="action-form" class="action-form">
+        <header class="action-heading">
+          <div>
+            <h1 id="action-title">New file</h1>
+            <p id="action-location" class="action-location">in /</p>
+          </div>
+          <button class="action-close" data-close-dialog type="button" aria-label="Close">×</button>
+        </header>
+        <label id="action-label" for="action-name">Filename</label>
+        <input id="action-name" name="name" autocomplete="off" required>
+        <p id="action-message" class="action-message" hidden></p>
+        <p id="action-error" class="dialog-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button class="quiet" data-close-dialog type="button">Cancel</button>
+          <button id="action-submit" type="submit">Create</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="tree-search-dialog" class="tree-search-dialog" aria-labelledby="tree-search-title">
+      <section class="tree-search-panel">
+        <header class="tree-search-heading">
+          <h1 id="tree-search-title">Find in tree</h1>
+          <button id="close-tree-search" class="quiet" type="button">Close</button>
+        </header>
+        <label class="visually-hidden" for="tree-search-input">Search files and folders</label>
+        <input id="tree-search-input" type="search" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="tree-search-results">
+        <p id="tree-search-status" role="status" aria-live="polite">Loading tree…</p>
+        <div id="tree-search-results" role="listbox" aria-label="Files and folders" tabindex="0"></div>
+      </section>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

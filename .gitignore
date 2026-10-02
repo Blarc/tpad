@@ -1,0 +1,7 @@
+/target/
+/.env
+/tpad/
+.DS_Store
+.idea
+*.iml
+mise.toml
