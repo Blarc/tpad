@@ -4,6 +4,16 @@
 
 All extensions are treated as plain text. There is no Markdown rendering, rich text, database, full-text search, or external service dependency.
 
+![tpad screenshot](imgs/demo.png)
+
+## Features
+
+- Minimal plain-text editor with autosave, explicit save, newline preservation, and unsaved-change protection.
+- Filesystem sidebar for nested directories and arbitrary text-file extensions, with create, rename, and delete actions.
+- Whole-tree fuzzy finder for file and folder paths; note contents are never searched.
+- Resizable navigation, keyboard-accessible controls, and a responsive layout for smaller screens.
+- Self-hosted Rust server with ordinary files on disk, Docker deployment, optional Basic authentication, and no database or external services.
+
 ## Quick start with Docker Compose
 
 ```sh
